@@ -3,6 +3,8 @@ const initialState = {
   count: 0,
   arr: [],
   arrObj: [],
+  textName: "",
+  textEmail: "",
 };
 
 const reducer = (state = initialState, action) => {
@@ -22,9 +24,14 @@ const reducer = (state = initialState, action) => {
     case "ADD_PERSON":
       const newObj = [...state.arrObj, { name: "John" }];
       return { ...state, arrObj: newObj };
+    case "TEXT_NAME":
+      return { ...state, textName:action.textName  }
+    case "TEXT_EMAIL":
+      return { ...state, textEmail:action.textEmail  }
     case "ADD_HISTORY":
       const history = [...state.arrObj, {name:action.name, email:action.email}]
-      return { ...state, arrObj: history };
+      // console.log({...state, arrObj:history})
+      return { ...state, arrObj: history, textName:'', textEmail:'' };
     default:
       return state;
   }

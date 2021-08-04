@@ -11,9 +11,8 @@ class App extends React.Component {                           //1
   AddHistory = (e)=> {
 
     e.preventDefault();
-    
-    this.props.addHistory({type: "ADD_HISTORY" , name: this.state.name , email: this.state.email})
-    this.setState({name:'', email: ''})
+    this.props.addHistory({type: "ADD_HISTORY" , name: this.props.state.textName , email: this.props.state.textEmail})
+    // this.setState({name:'', email: ''})
   }
 
   render() {
@@ -48,8 +47,8 @@ class App extends React.Component {                           //1
 
         <form onSubmit = {this.AddHistory} >
           {/* <p>{this.state.name}</p> */}
-          <input type='text' placeholder='name' onChange={(e) => this.setState({name: e.target.value})} value={this.state.name}></input>
-          <input type='text' placeholder='email'onChange={(e) => this.setState({email: e.target.value})} value={this.state.email}></input>
+          <input type='text' placeholder='name' onChange={(e) => this.props.textName({type:'TEXT_NAME',textName: e.target.value})} value={this.props.state.textName}></input>
+          <input type='text' placeholder='email'onChange={(e) => this.props.textEmail({type:'TEXT_EMAIL',textEmail: e.target.value})} value={this.props.state.textEmail}></input>
           <button type='submit' >submit</button>
         </form>
         </header>
@@ -73,6 +72,8 @@ const mapDispatchToProps = (dispatch) => {
     addNum: (action) => dispatch(action),
     addPerson: (action) => dispatch(action),
     addHistory: (action) => dispatch(action),
+    textName: (action) => dispatch(action),
+    textEmail: (action) => dispatch(action),
   };
 };
 
